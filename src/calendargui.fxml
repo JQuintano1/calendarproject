@@ -53,6 +53,6 @@
       <TextField fx:id="schedulemonth" layoutX="515.0" layoutY="22.0" prefHeight="25.0" prefWidth="81.0" promptText="Month" />
       <TextField fx:id="hours" layoutX="711.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" promptText="Min" />
       <TextField fx:id="minutes" layoutX="753.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" promptText="Sec" />
-      <TextField fx:id="daysrepeat" layoutX="795.0" layoutY="22.0" prefHeight="25.0" prefWidth="32.0" promptText="Min" />
+      <TextField fx:id="daysrepeat" layoutX="795.0" layoutY="22.0" prefHeight="25.0" prefWidth="32.0" promptText="days" />
    </children>
 </AnchorPane>
