@@ -28,6 +28,7 @@ public class calcontrol implements Initializable{
     ZonedDateTime date;
     ZonedDateTime today;
 
+    //javafx tools
     @FXML
     private FlowPane calformat;
 
@@ -61,11 +62,14 @@ public class calcontrol implements Initializable{
     @FXML
     private Button setevent;
 
+    //receives curent time information
     public void initialize(URL url, ResourceBundle resourceBundle) {
         date = ZonedDateTime.now();
         today = ZonedDateTime.now();
         drawCalendar();
     }
+
+    //button that moves the calendar back one month
     @FXML
     void back(ActionEvent event) {
         date = date.minusMonths(1);
@@ -73,18 +77,24 @@ public class calcontrol implements Initializable{
         drawCalendar();
     }
 
+    //button the moves the calendar forward one month
     @FXML
     void forward(ActionEvent event) {
         date = date.plusMonths(1);
         calformat.getChildren().clear();
         drawCalendar();
     }
+    
+    //button that checks for anything in the textfields
     @FXML
     void schedevent(ActionEvent e) {
         if (e.getSource()==setevent){
             getCalendarActivitiesMonth(date);
             calformat.getChildren().clear();
             drawCalendar();
+            schedulemonth.clear();
+            scheduleyear.clear();
+            daysrepeat.clear();
             hours.clear();
             minutes.clear();           
             scheduleday.clear();
@@ -92,7 +102,7 @@ public class calcontrol implements Initializable{
         }    
     }
     
-
+    //function draws calendar
     private void drawCalendar(){
         year.setText(String.valueOf(date.getYear()));
         month.setText(String.valueOf(date.getMonth()));
@@ -103,11 +113,11 @@ public class calcontrol implements Initializable{
         double spacingH = calformat.getHgap();
         double spacingV = calformat.getVgap();
 
-        //List of activities for a given month
+        //creates list for activities
         Map<Integer, List<planning>> calendarActivityMap = getCalendarActivitiesMonth(date);
 
         int monthMaxDate = date.getMonth().maxLength();
-        //Check for leap year
+        //checks for a leap year
         if(date.getYear() % 4 != 0 && monthMaxDate == 29){
             monthMaxDate = 28;
         }
@@ -150,24 +160,18 @@ public class calcontrol implements Initializable{
         }
     }
 
+    //writes the text to a box that appears on a box of the calendar in respect to the corresponding date
     private void createCalendarActivity(List<planning> calendarActivities, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox calendarActivityBox = new VBox();
         for (int k = 0; k < calendarActivities.size(); k++) {
             if(k >= 2) {
                 Text moreActivities = new Text("...");
-                calendarActivityBox.getChildren().add(moreActivities);
-                moreActivities.setOnMouseClicked(mouseEvent -> {
-                    //On ... click print all activities for given date
-                    System.out.println(calendarActivities);
-                });
+                calendarActivityBox.getChildren().add(moreActivities);               
                 break;
             }
             Text text = new Text(calendarActivities.get(k).getplan() + ", " + calendarActivities.get(k).getDate().toLocalTime());
             calendarActivityBox.getChildren().add(text);
-            text.setOnMouseClicked(mouseEvent -> {
-                //On Text clicked
-                System.out.println(text.getText());
-            });
+            
         }
         calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
         calendarActivityBox.setMaxWidth(rectangleWidth * 0.8);
@@ -176,7 +180,7 @@ public class calcontrol implements Initializable{
         stackPane.getChildren().add(calendarActivityBox);
     }
 
-
+    //stores the events in a hash map
     private Map<Integer, List<planning>> createCalendarMap(List<planning> calendarActivities) {
         Map<Integer, List<planning>> calendarActivityMap = new HashMap<>();
 
@@ -195,25 +199,32 @@ public class calcontrol implements Initializable{
         return  calendarActivityMap;
     }
 
+    //function that creates the events that goes on the calendar from user input   
     private Map<Integer, List<planning>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
         List<planning> calendarActivities = new ArrayList<>();
 
-        if (scheduleyear.getText() == null){
-            calformat.getChildren().clear();
-            drawCalendar();
-        }
-        else{
+        //converts textfield inputs to integers
+        try {
         int year = Integer.parseInt(scheduleyear.getText());
         int month = Integer.parseInt(schedulemonth.getText());
         int day = Integer.parseInt(scheduleday.getText());
         int timehours = Integer.parseInt(hours.getText());
         int timeminutes = Integer.parseInt(minutes.getText());
+        int amountofdays = Integer.parseInt(daysrepeat.getText());
         String reminder = eventmessage.getText();
-
         
-        ZonedDateTime time = ZonedDateTime.of(year, month, day, timehours, timeminutes, 0, 0,dateFocus.getZone());
-        calendarActivities.add(new planning(time, reminder));
+        //repeats events
+        for (int i = 0; i < amountofdays; i++){
+            ZonedDateTime time = ZonedDateTime.of(year, month, day + i, timehours, timeminutes, 0, 0,dateFocus.getZone());
+            calendarActivities.add(new planning(time, reminder));
+            }
+        } 
+        //deals with exceptions for when the textfields are empty
+        catch (NumberFormatException nfe){
+            calformat.getChildren().clear();
+            return createCalendarMap(calendarActivities);
         }
+        
         
             
         return createCalendarMap(calendarActivities);
