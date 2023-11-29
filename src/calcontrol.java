@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Action;
 
@@ -28,6 +30,9 @@ public class calcontrol implements Initializable{
 
     @FXML
     private FlowPane calformat;
+
+    @FXML
+    private TextField daysrepeat;
 
     @FXML
     private Text month;
@@ -76,11 +81,17 @@ public class calcontrol implements Initializable{
     }
     @FXML
     void schedevent(ActionEvent e) {
-        if (e.getSource()==setevent)
-        getCalendarActivitiesMonth(date);
-        drawCalendar();
-        
+        if (e.getSource()==setevent){
+            getCalendarActivitiesMonth(date);
+            calformat.getChildren().clear();
+            drawCalendar();
+            hours.clear();
+            minutes.clear();           
+            scheduleday.clear();
+            eventmessage.clear();
+        }    
     }
+    
 
     private void drawCalendar(){
         year.setText(String.valueOf(date.getYear()));
@@ -186,18 +197,25 @@ public class calcontrol implements Initializable{
 
     private Map<Integer, List<planning>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
         List<planning> calendarActivities = new ArrayList<>();
+
+        if (scheduleyear.getText() == null){
+            calformat.getChildren().clear();
+            drawCalendar();
+        }
+        else{
         int year = Integer.parseInt(scheduleyear.getText());
         int month = Integer.parseInt(schedulemonth.getText());
         int day = Integer.parseInt(scheduleday.getText());
+        int timehours = Integer.parseInt(hours.getText());
+        int timeminutes = Integer.parseInt(minutes.getText());
         String reminder = eventmessage.getText();
 
         
-        ZonedDateTime time = ZonedDateTime.of(year, month, day, 16, 30, 0, 0,dateFocus.getZone());
+        ZonedDateTime time = ZonedDateTime.of(year, month, day, timehours, timeminutes, 0, 0,dateFocus.getZone());
         calendarActivities.add(new planning(time, reminder));
-
+        }
         
-
-        
+            
         return createCalendarMap(calendarActivities);
         
     }

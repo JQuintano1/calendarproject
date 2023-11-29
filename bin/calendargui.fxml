@@ -42,16 +42,16 @@
          </children>
       </HBox>
       <FlowPane fx:id="calformat" alignment="TOP_CENTER" hgap="10.0" layoutX="20.0" layoutY="144.0" prefHeight="599.0" prefWidth="1200.0" />
-      <TextField fx:id="scheduleday" layoutX="596.0" layoutY="22.0" prefHeight="25.0" prefWidth="73.0" text="28" />
-      <TextField fx:id="scheduleyear" layoutX="669.0" layoutY="22.0" prefHeight="25.0" prefWidth="73.0" text="2023" />
-      <TextField fx:id="eventmessage" layoutX="514.0" layoutY="45.0" prefHeight="17.0" prefWidth="312.0" text="hello">
+      <TextField fx:id="scheduleday" layoutX="596.0" layoutY="22.0" prefHeight="25.0" prefWidth="73.0" promptText="Date" text="29" />
+      <TextField fx:id="scheduleyear" layoutX="669.0" layoutY="22.0" prefHeight="25.0" prefWidth="73.0" promptText="Year" text="2023" />
+      <TextField fx:id="eventmessage" layoutX="514.0" layoutY="45.0" prefHeight="17.0" prefWidth="312.0" promptText="Event" text="Today">
          <font>
             <Font size="28.0" />
          </font>
       </TextField>
-      <Button fx:id="setevent" layoutX="854.0" layoutY="39.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" text="Set Event" />
-      <TextField fx:id="schedulemonth" layoutX="515.0" layoutY="22.0" prefHeight="25.0" prefWidth="81.0" text="11" />
-      <TextField fx:id="hours" layoutX="742.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" text="16" />
-      <TextField fx:id="minutes" layoutX="784.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" text="30" />
+      <Button fx:id="setevent" layoutX="913.0" layoutY="45.0" mnemonicParsing="false" onAction="#schedevent" prefHeight="42.0" prefWidth="102.0" text="Set Event" />
+      <TextField fx:id="schedulemonth" layoutX="515.0" layoutY="22.0" prefHeight="25.0" prefWidth="81.0" promptText="Month" text="11" />
+      <TextField fx:id="hours" layoutX="742.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" promptText="Min" text="16" />
+      <TextField fx:id="minutes" layoutX="784.0" layoutY="22.0" prefHeight="25.0" prefWidth="42.0" promptText="Sec" text="30" />
    </children>
 </AnchorPane>
