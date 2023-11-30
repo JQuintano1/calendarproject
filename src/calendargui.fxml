@@ -32,13 +32,13 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <children>
-            <Text fill="#111111" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" wrappingWidth="115.0" HBox.hgrow="NEVER" />
-            <Text fill="#ff7f00" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" wrappingWidth="209.0" />
-            <Text fill="#ffce00" strokeType="OUTSIDE" strokeWidth="0.0" text="Tues" textAlignment="CENTER" wrappingWidth="153.0" />
-            <Text fill="#00ff3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" wrappingWidth="183.0" />
-            <Text fill="BLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thurs" textAlignment="CENTER" wrappingWidth="223.0" />
-            <Text fill="INDIGO" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" textAlignment="CENTER" wrappingWidth="130.0" />
-            <Text fill="DARKVIOLET" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" textAlignment="RIGHT" wrappingWidth="83.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" wrappingWidth="115.0" HBox.hgrow="NEVER" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" wrappingWidth="209.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tues" textAlignment="CENTER" wrappingWidth="153.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" wrappingWidth="183.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thurs" textAlignment="CENTER" wrappingWidth="223.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" textAlignment="CENTER" wrappingWidth="130.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" textAlignment="RIGHT" wrappingWidth="83.0" />
          </children>
       </HBox>
       <FlowPane fx:id="calformat" alignment="TOP_CENTER" hgap="10.0" layoutX="28.0" layoutY="143.0" prefHeight="599.0" prefWidth="1200.0" style="-fx-background-color: white;" />
