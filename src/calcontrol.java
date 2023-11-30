@@ -1,11 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -14,16 +10,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import java.io.IOException;
 import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.Action;
 
 public class calcontrol implements Initializable{
 
@@ -109,11 +98,11 @@ public class calcontrol implements Initializable{
         year.setText(String.valueOf(date.getYear()));
         month.setText(String.valueOf(date.getMonth()));
 
-        double calendarWidth = calformat.getPrefWidth();
-        double calendarHeight = calformat.getPrefHeight();
-        double strokeWidth = 1;
-        double spacingH = calformat.getHgap();
-        double spacingV = calformat.getVgap();
+        double calendarwidth = calformat.getPrefWidth();
+        double calendarheight = calformat.getPrefHeight();
+        double strokewidth = 1;
+        double spacinghorizontal = calformat.getHgap();
+        double spacingvertical = calformat.getVgap();
 
         //creates list for activities
         Map<Integer, List<planning>> calendarActivityMap = getCalendarActivitiesMonth(date);
@@ -132,10 +121,10 @@ public class calcontrol implements Initializable{
                 Rectangle rectangle = new Rectangle();
                 rectangle.setFill(Color.TRANSPARENT);
                 rectangle.setStroke(Color.BLACK);
-                rectangle.setStrokeWidth(strokeWidth);
-                double rectangleWidth =(calendarWidth/7) - strokeWidth - spacingH;
+                rectangle.setStrokeWidth(strokewidth);
+                double rectangleWidth =(calendarwidth/7) - strokewidth - spacinghorizontal;
                 rectangle.setWidth(rectangleWidth);
-                double rectangleHeight = (calendarHeight/6) - strokeWidth - spacingV;
+                double rectangleHeight = (calendarheight/6) - strokewidth - spacingvertical;
                 rectangle.setHeight(rectangleHeight);
                 stackPane.getChildren().add(rectangle);
 
